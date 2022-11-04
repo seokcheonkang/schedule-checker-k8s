@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: schedulechecker_fe
+  namespace: default
+  labels:
+    env: prd
+spec:
+  selector:
+    matchLabels:
+      app: frontend-fargate
+  template:
+    metadata:
+      labels:
+        app: frontend-fargate
