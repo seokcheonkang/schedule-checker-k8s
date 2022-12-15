@@ -9,7 +9,7 @@ images:
   newTag: 0fdafd31
 - name: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_fe
   newName: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_fe
-  newTag: 0fdafd31
+  newTag: a6678b70
 resources:
 - ../../base
 patchesStrategicMerge:
