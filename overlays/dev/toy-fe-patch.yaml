@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toy-frontend
+  namespace: default
+  labels:
+    env: dev
+spec:
+  selector:
+    matchLabels:
+      app: toy-frontend
+  template:
+    metadata:
+      labels:
+        app: toy-frontend
