@@ -5,7 +5,7 @@ metadata:
   name: toy-be-home
   namespace: default
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: toy-be-home

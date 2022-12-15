@@ -16,7 +16,6 @@ spec:
     spec:
       containers:
         - name: toy-be-auth
-#          image: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_be_auth@sha256:a2a00e94f58bf0e5fb679306690baf76257d7d1308c88f7100b1ccae1bf393b5
           image: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_be_auth:latest
           imagePullPolicy: Always
           ports:
