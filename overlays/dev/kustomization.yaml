@@ -6,7 +6,7 @@ images:
   newTag: a6678b70
 - name: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_be_home
   newName: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_be_home
-  newTag: a6678b70
+  newTag: cabfce67
 - name: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_fe
   newName: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_fe
   newTag: a6678b70
