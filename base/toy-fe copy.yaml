@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toy-frontend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: toy-frontend
+  template:
+    metadata:
+      labels:
+        app: toy-frontend
+    spec:
+      containers:
+        - name: toy-frontend
+          image: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_fe:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

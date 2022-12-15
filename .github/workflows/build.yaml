@@ -1,0 +1,61 @@
+name: Deploy to PRD
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: ap-northeast-2
+  GITHUB_USERNAME: KimYunBeom
+  REPOSITORY_NAME: schedule-checker-k8s
+  BASE_PATH: base
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
+
+      - name: Checkout kustomize repository
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.GITHUB_USERNAME }}/${{ env.REPOSITORY_NAME }}
+          ref: main
+          token: ${{ secrets.ACTION_TOKEN }}
+          path: ${{ env.REPOSITORY_NAME }}
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Get image tag(verion)
+        id: image-info
+        run: |
+          VERSION=$(echo ${{ github.sha }} | cut -c1-8)
+          echo VERSION=$VERSION
+          echo "::set-output name=version::$VERSION"
+
+      - name: Update Kubernetes resources
+        env:
+          LOGIN_ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ env.REPOSITORY_NAME }}
+          IMAGE_TAG: ${{ steps.image-info.outputs.version }}
+        run: |
+          echo ${{ env.LOGIN_ECR_REGISTRY }}
+          echo ${{ env.ECR_REPOSITORY }}
+          echo ${{ env.IMAGE_TAG }}
+
+          cd ${{ env.REPOSITORY_NAME }}/overlays/dev
+
+          kustomize edit set image ${{ env.LOGIN_ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}=${{ env.LOGIN_ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+
+          cat kustomization.yaml
