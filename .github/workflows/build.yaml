@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: ap-northeast-2
-  GITHUB_USERNAME: KimYunBeom
+  GITHUB_USERNAME: seokcheonkang
   REPOSITORY_NAME: schedule-checker-k8s
   BASE_PATH: base
 
