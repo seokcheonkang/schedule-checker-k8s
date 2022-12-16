@@ -3,7 +3,7 @@ kind: Kustomization
 images:
 - name: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_be_auth
   newName: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_be_auth
-  newTag: 4b2aa8ca
+  newTag: 937849cc
 - name: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_be_home
   newName: 817757596025.dkr.ecr.ap-northeast-2.amazonaws.com/schedulechecker_be_home
   newTag: 4b2aa8ca
